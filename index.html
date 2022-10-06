@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/bbpp666/player@main/favicon.ico">
+<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noarchive">
+<meta name="Baiduspider" content="noarchive">
+<meta name="googlebot" content="noarchive">
+<meta name="referrer" content="never">
+<title>M3U8在线播放器</title>
+<link type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<style>
+button:visited,button:active{border:0 !important;background:#00aff0 !important}
+#wrap{max-width:900px !important;margin-top:5px !important;padding: 10px;}
+#wrap .alert{padding: 0px;border-radius: 1px;}
+#menu{max-width:900px !important;padding: 0;}
+.footer{text-align:center;padding:10px;color:#a94442;}
+a{color:#a94442}
+audio,video{width:100%;max-height:100%;background:rgba(0,0,0,0.9)}
+@media screen and (max-width: 799px){
+#wrap{margin:30px 10px 0 !important}
+video{max-height:200px}
+#menu{padding:0 15px}}
+.input-group{width:100%}
+.input-group select{margin-bottom:10px !important}
+.input-group input{margin-bottom:10px !important}
+.input-group button{width:100%;background:#00aff0;color:#fff;font-size:16px;border:0;padding:10px 0;margin:0 auto;float:none;display:block !important;}
+.input-group button:hover{background:#bc612c !important;color:#fff !important}
+pre{white-space:normal !important;}
+.input-group p {word-wrap: break-word;word-break: break-all;}
+select,option {font-size:13px;}
+.footer{display:none}
+</style>
+<script>
+</script>
+</head>
+<body>
+<nav class="navbar-light" style="background-color: rgb(22, 160, 134);">
+<div class="container" id="menu">
+<div class="navbar-header">
+<a class="navbar-brand" style="color: #ffffff;">M3U8在线播放器</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav navbar-right">
+</div>
+</div>
+</nav> 
+<div class="container" id="wrap">
+<div class="row">
+<div class="alert" role="alert">
+<style>
+body{
+z-index: -1;
+position: fixed;
+top: 0px; left: 0px; height: 100%; width: 100%; 
+background-size: cover; background-color: #525252;
+background-image: url(http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202208/69b443bdeeb0b964446459ab7f1fc8ab--2655214480.jpg);
+margin: 0;
+}.playbox,#player{width:100%;height:500px;overflow:hidden;color:#aaa;background-color:#000;box-sizing:border-box;-moz-box-sizing:border-box;}
+</style>
+<script>var libpach = 'https://cdn.jsdelivr.net/gh/bbpp666/player@main/';</script>
+<script src="https://cdn.jsdelivr.net/gh/bbpp666/player@main/player.min.js"></script>
+<div class="playbox" id="player">
+</div>
+</div>
+<div class="alert" role="alert">
+<div class="input-group">
+<input required type="text" name="urll" id="urll" class="form-control" placeholder="M3U8 URL" value="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8">
+</div>
+<div class="input-group">
+<a style="width:100%;background:#00aff0;color:#fff;padding:10px;font-size:16px;" class="btn" href="javascript:void(0)" onClick="Playvideo();">播放视频</a> 
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+</div>
+<script type="text/javascript">
+function Playvideo(){
+var url = urll.value;
+if(url){
+var type = 'application/x-mpegURL';
+if( url.indexOf(".mp4") != -1 ){
+var type = 'video/mp4';
+}
+$("#player").html('<video id="example-player"><source id="video" src="'+url+'" type="'+type+'"/></video>');
+var player = fluidPlayer(
+'example-player',{
+layoutControls: {
+autoPlay: true,
+preload:'auto',
+fillToContainer: true,
+playbackRateEnabled: true,
+}
+}
+);
+}
+}
+$(document).ready(function(){
+$("#urll").focusin(function(){
+e = $(this).val(),
+$(this).val("")
+}).focusout(function() {
+$(this).val(e)
+}).change(function() {
+$(this).val().length > 0 && (e = $(this).val())
+})
+});
+</script>
+</body>
+</html>
